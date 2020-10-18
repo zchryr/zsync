@@ -25,7 +25,13 @@ pipeline {
         }
         stage("Docker image build") {
             steps {
-                app = docker.build("zacharyr/replication")
+                script {
+                    try {
+                        docker.build("zacharyr/replication")
+                    } catch(e) {
+                        currentBuild.result = "FAILURE"
+                    }
+                }
             }
         }   
     }
