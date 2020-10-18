@@ -24,8 +24,9 @@ pipeline {
             }
         }
         stage("Docker image build") {
-            app = docker.build("zacharyr/replication")
-        }
-            
+            steps {
+                app = docker.build("zacharyr/replication")
+            }
+        }   
     }
 }
