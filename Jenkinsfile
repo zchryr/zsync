@@ -15,7 +15,7 @@ pipeline {
                     try {
                         mattermostSend (
                             color: "#2A42EE",
-                            message: "testing"
+                            message: "MM testing"
                         )
                     } catch(e) {
                         currentBuild.result = "FAILURE"
@@ -23,5 +23,9 @@ pipeline {
                 }
             }
         }
+        stage("Docker image build") {
+            app = docker.build("zacharyr/replication")
+        }
+            
     }
 }
