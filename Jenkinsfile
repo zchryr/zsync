@@ -1,38 +1,36 @@
 pipeline {
     agent {
-        label 'ubuntu'
+        label 'docker'
+    }
+
+    environment {
+        // Docker stuff.
+        registryRepo = 'registry.rohrbach.xyz/replication:latest'
+        registryAddress = 'https://registry.rohrbach.xyz'
+        registryCredential = 'rohrbach-registry'
+        dockerImage = ''
     }
 
     stages {
-        stage('echo') {
-            steps {
-                sh 'echo "Hello world!"'
-            }
-        }
-        stage('mm') {
+        stage('Build Docker Image') {
             steps {
                 script {
-                    try {
-                        mattermostSend (
-                            color: "#2A42EE",
-                            message: "MM testing"
-                        )
-                    } catch(e) {
-                        currentBuild.result = "FAILURE"
-                    }
+                    dockerImage = docker.build(registryRepo + ":dev")
                 }
             }
         }
-        stage("Docker image build") {
-            steps {
-                script {
-                    try {
-                        docker.build("zacharyr/replication")
-                    } catch(e) {
-                        currentBuild.result = "FAILURE"
-                    }
-                }
-            }
-        }   
     }
+
+    post {
+        always {
+            deleteDir()
+        }
+        success {
+            mattermostSend color: 'good', message: "Build Number: $BUILD_NUMBER\nJob Name: $JOB_NAME\nBuild URL: $BUILD_URL", text: "$JOB_NAME Pipeline Passing :)"
+        }
+        failure {
+            mattermostSend color: 'bad', message: "Build Number: $BUILD_NUMBER\nJob Name: $JOB_NAME\nBuild URL: $BUILD_URL", text: "$JOB_NAME Pipeline Failing :("
+        }
+    }
+
 }
