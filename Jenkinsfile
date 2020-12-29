@@ -5,7 +5,7 @@ pipeline {
 
     environment {
         // Docker stuff.
-        registryRepo = 'registry.rohrbach.xyz/replication:latest'
+        registryRepo = 'registry.rohrbach.xyz/replication'
         registryAddress = 'https://registry.rohrbach.xyz'
         registryCredential = 'rohrbach-registry'
         dockerImage = ''
