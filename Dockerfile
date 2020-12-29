@@ -2,7 +2,7 @@ FROM node:current-buster-slim
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package*.json .
 
 RUN npm install
 
