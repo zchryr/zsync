@@ -12,6 +12,8 @@ WORKDIR /home/replication
 
 COPY . .
 
+RUN pip3 install -r requirements.txt
+
 USER replication
 
 CMD ["python3", "replication.py"]
