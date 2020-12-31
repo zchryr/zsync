@@ -3,5 +3,10 @@
     "remoteuser" : "user",
     "remotedir": "/media",
     "mmnotifications": false,
-    "mmwebhook": "https://chat.example.com/hooks/hsdfgaksjdhfgaksiudfygha"
+    "mmwebhook": "https://chat.example.com/hooks/hsdfgaksjdhfgaksiudfygha",
+    "dirstonotifyon": [
+        "foldername",
+        "pictures",
+        "vacation-2017"
+    ]
 }
