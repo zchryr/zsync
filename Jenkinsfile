@@ -5,9 +5,8 @@ pipeline {
 
     environment {
         // Docker stuff.
-        registryRepo = 'registry.rohrbach.xyz/replication'
-        registryAddress = 'https://registry.rohrbach.xyz'
-        registryCredential = 'rohrbach-registry'
+        registryRepo = 'zacharyr/replication'
+        registryCredential = 'dockerhub'
         dockerImage = ''
     }
 
@@ -16,6 +15,13 @@ pipeline {
             steps {
                 script {
                     dockerImage = docker.build(registryRepo + ":dev")
+                }
+            }
+        }
+        stage('Publish Image') {
+            steps {
+                docker.withRegistry('', registryCredential) {
+                    dockerImage.push()
                 }
             }
         }
