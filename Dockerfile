@@ -1,11 +1,17 @@
-FROM node:current-alpine
+FROM python:slim-buster
 
-WORKDIR /app
+RUN apt update && apt install ssh jq rsync -y
 
-COPY package*.json .
+RUN useradd -m replication
 
-RUN npm install
+RUN mkdir -p /home/replication/.ssh
+
+RUN chown -R replication:replication /home/replication/.ssh
+
+WORKDIR /home/replication
 
 COPY . .
 
-CMD ["node", "index.js"]
+USER replication
+
+CMD ["python3", "replication.py"]
