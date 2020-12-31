@@ -39,7 +39,7 @@ def rsyncUpload():
     remote = argsFile['remoteuser'] + "@" + argsFile['remoteip'] + ":" + argsFile['remotedir']
 
     # Runs rsync.
-    rsync = subprocess.run(["rsync", "-raz", "/home/replication/local", remote])
+    rsync = subprocess.run(["rsync", "-raz", "/home/replication/local/*", remote])
 
     if rsync.returncode != 0:
         print("rsync upload return code non-zero, assuming failed.")
