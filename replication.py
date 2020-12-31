@@ -45,8 +45,8 @@ def rsyncUpload():
         print("rsync upload return code non-zero, assuming failed.")
         exit(1)
 
-# remoteSSHKeyRetrieval()
-# rsyncUpload()
+remoteSSHKeyRetrieval()
+rsyncUpload()
 
 # p = subprocess.run(['ls', '-al'], capture_output=True)
 
