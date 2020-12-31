@@ -3,5 +3,6 @@
     "remoteuser" : "user - username for user auth.",
     "remotedir": "/media - remote dir to upload to.",
     "localdir": "/home/user/Documents - local dir to upload to remote server.",
+    "mmnotifications": false,
     "mmwebhook": "https://chat.example.com/hooks/hsdfgaksjdhfgaksiudfygha - webhook for notifications."
 }
