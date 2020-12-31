@@ -1,7 +1,7 @@
 {
-    "remoteip" : "192.168.1.1 - remote IP for server to upload to.",
-    "remoteuser" : "user - username for user auth.",
-    "remotedir": "/media - remote dir to upload to.",
+    "remoteip" : "192.168.1.1",
+    "remoteuser" : "user",
+    "remotedir": "/media",
     "mmnotifications": false,
-    "mmwebhook": "https://chat.example.com/hooks/hsdfgaksjdhfgaksiudfygha - webhook for notifications."
+    "mmwebhook": "https://chat.example.com/hooks/hsdfgaksjdhfgaksiudfygha"
 }
