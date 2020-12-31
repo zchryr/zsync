@@ -31,7 +31,7 @@ def remoteSSHKeyRetrieval():
 
 def rsyncUpload():
     # Checks if user edited the args.json before running.
-    if "remote IP for server to upload to" in argsFile['remoteip']: 
+    if "192.168.1.1" in argsFile['remoteip']: 
         print("You MUST edit the 'args.json' file with the non-default information.")
         exit(1)
 
