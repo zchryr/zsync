@@ -41,6 +41,7 @@ def rsyncUpload():
     # Runs rsync.
     rsync = subprocess.run(["rsync", "-raz", "/home/replication/local/", remote])
 
+    # If rsync returns non-zero exit code, script exits.
     if rsync.returncode != 0:
         print("rsync upload return code non-zero, assuming failed.")
         exit(1)
