@@ -2,6 +2,9 @@ import subprocess
 import json
 from matterhook import Webhook # https://github.com/numberly/matterhook
 
+true = True
+false = False
+
 # Gets all the json from the args.json file.
 argsFile = json.load(open('args.json'))
 
@@ -66,13 +69,16 @@ def rsyncUpload():
 
     rOutput = rsync.stdout.decode('utf-8')
 
-    # Parses out the new movies & tv-shows.
-    for idx, directory in enumerate(argsFile['dirstonotifyon']): # For loop with tracked index.
-        for n in rOutput.split("\n"): # Splits out into new lines.
-            if n.split("++++ ")[-1].split("/", 1)[0] == directory: # Splits +++ between the real info.
-                if n.split("++++ ")[-1].split("/", 1)[-1] != '': # Makes sure info isn't ''.
-                    dirs[idx].append(n.split("++++ ")[-1].split("/", 1)[-1]) # Appends to appropriate list.
+    if argsFile['mmnotifications'] == false:
+        # Parses out the new movies & tv-shows.
+        for idx, directory in enumerate(argsFile['dirstonotifyon']): # For loop with tracked index.
+            for n in rOutput.split("\n"): # Splits out into new lines.
+                if n.split("++++ ")[-1].split("/", 1)[0] == directory: # Splits +++ between the real info.
+                    if n.split("++++ ")[-1].split("/", 1)[-1] != '': # Makes sure info isn't ''.
+                        dirs[idx].append(n.split("++++ ")[-1].split("/", 1)[-1]) # Appends to appropriate list.
 
 remoteSSHKeyRetrieval()
 rsyncUpload()
-mattermostNotification("good")
+
+if argsFile['mmnotifications'] == true:
+    mattermostNotification("good")
