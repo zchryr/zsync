@@ -5,7 +5,8 @@
     "mmnotifications": "true",
     "mmwebhook": "https://chat.example.com/hooks/lajksdhfaishdlakjdsbfawe",
     "dirstonotifyon": [
-        "movies",
-        "tv-shows"
+        "vacation",
+        "family-photos",
+        "rome-trip"
     ]
 }
