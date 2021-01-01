@@ -16,33 +16,33 @@ mmattachments = []
 mmmessage = {}
 
 def mattermostNotification(goodOrBad, message=""):
-    if goodOrBad == "good":
-        if not any(dirs):
-            mmmessage['color'] = '#0ffc03'
-            mmmessage['text'] = "No updates made."
+    if argsFile['mmnotifications'] == "true":
+        if goodOrBad == "good":
+            if not any(dirs):
+                mmmessage['color'] = '#0ffc03'
+                mmmessage['text'] = "No updates made."
+                mmattachments.append(mmmessage)
+                mm.send(attachments=mmattachments)
+            else:
+                # Created a separate markdown message for each root level dir to by notified on.
+                for idx, i in enumerate(range(len(argsFile['dirstonotifyon']))):
+                    mmmessage['color'] = '#0ffc03'
+                    mmmarkdown = '### ' + argsFile['dirstonotifyon'][idx] + "\n"
+                    for y in dirs[idx]:
+                        mmmarkdown += y + "\n"
+
+                    mmmessage['text'] = mmmarkdown
+                    mmattachments.append(mmmessage)
+                    mm.send(attachments=mmattachments)
+                    mmattachments.clear()
+        elif goodOrBad == "bad":
+            mmmessage['color'] = "#ff0000"
+            mmmessage['text'] = message
             mmattachments.append(mmmessage)
             mm.send(attachments=mmattachments)
         else:
-            # Created a separate markdown message for each root level dir to by notified on.
-            for idx, i in enumerate(range(len(argsFile['dirstonotifyon']))):
-                mmmessage['color'] = '#0ffc03'
-                mmmarkdown = '### ' + argsFile['dirstonotifyon'][idx] + "\n"
-                for y in dirs[idx]:
-                    mmmarkdown += y + "\n"
-
-                mmmessage['text'] = mmmarkdown
-                mmattachments.append(mmmessage)
-                mm.send(attachments=mmattachments)
-                mmattachments.clear()
-                print("I hate this", str(idx))
-    elif goodOrBad == "bad":
-        mmmessage['color'] = "#ff0000"
-        mmmessage['text'] = message
-        mmattachments.append(mmmessage)
-        mm.send(attachments=mmattachments)
-    else:
-        print("This shouldn't be happening :(")
-        exit(1)
+            print("This shouldn't be happening :(")
+            exit(1)
 
 def remoteSSHKeyRetrieval():
     # Runs a bash script to get the remote key and save it go /home/zsync/.ssh/known_hosts.
@@ -58,8 +58,8 @@ def rsyncUpload():
     remote = argsFile['remoteuser'] + "@" + argsFile['remoteip'] + ":" + argsFile['remotedir']
 
     # Runs rsync.
-    rsync = subprocess.run(["rsync", "-razi", "--ignore-existing", "./test/", remote], capture_output=True)
-    # rsync = subprocess.run(["rsync", "-razi", "--ignore-existing", "/home/zsync/local/", remote], capture_output=True)
+    # rsync = subprocess.run(["rsync", "-razi", "--ignore-existing", "./test/", remote], capture_output=True)
+    rsync = subprocess.run(["rsync", "-razi", "--ignore-existing", "/home/zsync/local/", remote], capture_output=True)
 
     # If rsync returns non-zero exit code, script exits.
     if rsync.returncode != 0:
@@ -81,6 +81,4 @@ def rsyncUpload():
 
 remoteSSHKeyRetrieval()
 rsyncUpload()
-
-if argsFile['mmnotifications'] == "true":
-    mattermostNotification("good")
+mattermostNotification("good")
