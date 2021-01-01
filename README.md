@@ -25,6 +25,8 @@ You need to run `ssh-keygen`, create a `id_rsa` and `id_rsa.pub` with an empty p
 ## How To Build This Yourself
 `docker build .`
 
+---
+
 ### Random
 You can run this without needing docker, I just wouldn't recommend it. But if you want to, you'll need Python3, to install the packages in the `requirements.txt` file, and to do the above steps (minus the docker stuff).
 
