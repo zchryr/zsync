@@ -2,9 +2,6 @@ import subprocess
 import json
 from matterhook import Webhook # https://github.com/numberly/matterhook
 
-true = True
-false = False
-
 # Gets all the json from the args.json file.
 argsFile = json.load(open('args.json'))
 
