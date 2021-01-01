@@ -12,7 +12,7 @@ If you would like to use a `docker run` command instead, here is an example
 docker run --rm --name zsync \
 -v /opt/zsync/args.json:/home/zsync/args.json:ro \
 -v /opt/zsync/id_rsa:/home/zsync/.ssh/id_rsa:ro \
--v /opt/zsync/files-to-backup:/home/zsync/local:ro \
+-v /opt/zsync/files-to-backup/:/home/zsync/local:ro \
 zacharyr/zsync:latest
 ```
 
