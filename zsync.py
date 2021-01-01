@@ -15,7 +15,7 @@ mmmessage = {}
 def mattermostNotification(goodOrBad, message=""):
     if argsFile['mmnotifications'] == "true": # Checks if args.json is set.
         if goodOrBad == "good":
-            if not any(dirs):
+            if not any(dirs): # If dirs list of lists is empty.
                 mmmessage['color'] = '#0ffc03'
                 mmmessage['text'] = "No updates made."
                 mmattachments.append(mmmessage)
