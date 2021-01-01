@@ -5,25 +5,41 @@ from matterhook import Webhook # https://github.com/numberly/matterhook
 # Gets all the json from the args.json file.
 argsFile = json.load(open('args.json'))
 
+# Mattermost setup
 # Uses 'args.json' to allow Mattermost notifications.
 mm = Webhook(argsFile['mmwebhook'].split('hooks')[0][:-1], argsFile['mmwebhook'].split('hooks')[-1][1:])
+dirs = [[] for i in range(len(argsFile['dirstonotifyon']))]
+mmattachments = []
+mmmessage = {}
 
-def mattermostNotification():
-    mmattachments = []
-    mmmessage = {}
-    mmmessage['color'] = '#0ffc03'
-    mmmarkdown = '### Title'
-    mmmarkdown += 'Line of text\n'
-    mmmarkdown += 'stuff'
-    mmmarkdown += '''
-    | name                               |   date |
-    |------------------------------------|--------|
-    | Monty Python and the Holy Grail    |   1975 |
-    '''
+def mattermostNotification(goodOrBad, message=""):
+    if goodOrBad == "good":
+        if not any(dirs):
+            mmmessage['color'] = '#0ffc03'
+            mmmessage['text'] = "No updates made."
+            mmattachments.append(mmmessage)
+            mm.send(attachments=mmattachments)
+        else:
+            # Created a separate markdown message for each root level dir to by notified on.
+            for idx, i in enumerate(range(len(argsFile['dirstonotifyon']))):
+                mmmessage['color'] = '#0ffc03'
+                mmmarkdown = '### ' + argsFile['dirstonotifyon'][idx] + "\n"
+                for y in dirs[idx]:
+                    mmmarkdown += y + "\n"
 
-    mmmessage['text'] = mmmarkdown
-    mmattachments.append(mmmessage)
-    mm.send(attachments=mmattachments)
+                mmmessage['text'] = mmmarkdown
+                mmattachments.append(mmmessage)
+                mm.send(attachments=mmattachments)
+                mmattachments.clear()
+                print("I hate this", str(idx))
+    elif goodOrBad == "bad":
+        mmmessage['color'] = "#ff0000"
+        mmmessage['text'] = message
+        mmattachments.append(mmmessage)
+        mm.send(attachments=mmattachments)
+    else:
+        print("This shouldn't be happening :(")
+        exit(1)
 
 def remoteSSHKeyRetrieval():
     # Runs a bash script to get the remote key and save it go /home/replication/.ssh/known_hosts.
@@ -39,15 +55,23 @@ def rsyncUpload():
     remote = argsFile['remoteuser'] + "@" + argsFile['remoteip'] + ":" + argsFile['remotedir']
 
     # Runs rsync.
-    rsync = subprocess.run(["rsync", "-raz", "/home/replication/local/", remote])
+    rsync = subprocess.run(["rsync", "-razi", "--ignore-existing", "/home/replication/local/", remote], capture_output=True)
 
     # If rsync returns non-zero exit code, script exits.
     if rsync.returncode != 0:
         print("rsync upload return code non-zero, assuming failed.")
+        mattermostNotification("bad", "rsync upload return code non-zero, assuming failed.\n rsync return code: " + str(rsync.returncode))
         exit(1)
+
+    rOutput = rsync.stdout.decode('utf-8')
+
+    # Parses out the new movies & tv-shows.
+    for idx, directory in enumerate(argsFile['dirstonotifyon']): # For loop with tracked index.
+        for n in rOutput.split("\n"): # Splits out into new lines.
+            if n.split("++++ ")[-1].split("/", 1)[0] == directory: # Splits +++ between the real info.
+                if n.split("++++ ")[-1].split("/", 1)[-1] != '': # Makes sure info isn't ''.
+                    dirs[idx].append(n.split("++++ ")[-1].split("/", 1)[-1]) # Appends to appropriate list.
 
 remoteSSHKeyRetrieval()
 rsyncUpload()
-
-# p = subprocess.run(['ls', '-al'], capture_output=True)
-
+mattermostNotification("good")
