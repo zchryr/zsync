@@ -42,7 +42,7 @@ def mattermostNotification(goodOrBad, message=""):
             exit(1)
 
 def remoteSSHKeyRetrieval():
-    # Runs a bash script to get the remote key and save it go /home/zsync/.ssh/known_hosts.
+    # Runs a bash script to get the remote key and save it to /home/zsync/.ssh/known_hosts.
     subprocess.run(["/bin/bash", "retrieve-key.sh"], capture_output=True)
 
 def rsyncUpload():
