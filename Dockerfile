@@ -1,7 +1,7 @@
 # Base layer stuff.
 FROM python:slim-buster
 
-RUN apt update && apt install ssh jq rsync -y
+RUN apt update && apt install ssh rsync -y
 
 # User stuff.
 RUN useradd -m zsync
