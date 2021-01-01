@@ -2,6 +2,10 @@
 
 I created this project because I wanted to have more visibility into off-site backups that I'm running. I think [rsync](https://en.wikipedia.org/wiki/Rsync) is amazing, so that's why this is basically just a wrapper around it written in Python with some extra Mattermost notification functionality. I know [zsync](http://zsync.moria.org.uk/) already exists, but I named it this before realizing that, and mainly because my name starts with a z.
 
+## Why To Use This
+
+As mentioned the purpose of this project is to sync an on-site NAS, to an off-site NAS. The rsync arguments specified in the python script only move files that are not on the remote host. The real reason to use this, is to get some visibility into which files are transferred to the remote server. I invision this to be used in cron job / schedule, where a nightly backup is made to the off-site NAS.
+
 ## How To Run This
 ### docker-compose [option 1]
 Using `docker-compose` you can use the example `docker-compose.yml` file includued in this repo. That file has the three volumes that you need to create and configure for this to work. I would recommend a command something like `docker-compose up && docker-compose down` to run this with compose.
