@@ -10,6 +10,10 @@ pipeline {
         dockerImage = ''
     }
 
+    triggers { 
+        cron("0 1 * * *") 
+    }
+
     stages {
         stage('Build Docker Image') {
             steps {
