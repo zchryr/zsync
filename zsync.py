@@ -13,7 +13,7 @@ mmattachments = []
 mmmessage = {}
 
 def mattermostNotification(goodOrBad, message=""):
-    if argsFile['mmnotifications'] == "true":
+    if argsFile['mmnotifications'] == "true": # Checks if args.json is set.
         if goodOrBad == "good":
             if not any(dirs):
                 mmmessage['color'] = '#0ffc03'
