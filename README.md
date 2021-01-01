@@ -1,6 +1,6 @@
 # zsync
 
-I created this project because I wanted to have more visibility into off-site backups that I'm running. I think [rsync](https://en.wikipedia.org/wiki/Rsync) is amazing, so that's why this is basically just a wrapper around in written in Python with some extra Mattermost notification functionality. I might add Slack functionality into this later.
+I created this project because I wanted to have more visibility into off-site backups that I'm running. I think [rsync](https://en.wikipedia.org/wiki/Rsync) is amazing, so that's why this is basically just a wrapper around in written in Python with some extra Mattermost notification functionality. I know [zsync](http://zsync.moria.org.uk/) already exists, but I named it this before realizing that, and mainly because my name starts with a z.
 
 ## How To Run This
 ### docker-compose [option 1]
@@ -30,3 +30,4 @@ You can run this without needing docker, I just wouldn't recommend it. But if yo
 
 ### The Future
 I want to add more error checking/handling into this project. I'm sure I can also add a lot more visibility into things, so more to come on that.
+I might add Slack functionality into this later.
