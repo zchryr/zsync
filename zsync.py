@@ -79,5 +79,5 @@ def rsyncUpload():
                         dirs[idx].append(n.split("++++ ")[-1].split("/", 1)[-1]) # Appends to appropriate list.
 
 remoteSSHKeyRetrieval()
-# rsyncUpload()
-# mattermostNotification("good")
+rsyncUpload()
+mattermostNotification("good")
