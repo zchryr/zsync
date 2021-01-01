@@ -42,7 +42,7 @@ def mattermostNotification(goodOrBad, message=""):
         exit(1)
 
 def remoteSSHKeyRetrieval():
-    # Runs a bash script to get the remote key and save it go /home/replication/.ssh/known_hosts.
+    # Runs a bash script to get the remote key and save it go /home/sync/.ssh/known_hosts.
     subprocess.run(["/bin/bash", "retrieve-key.sh"], capture_output=True)
 
 def rsyncUpload():
@@ -55,7 +55,7 @@ def rsyncUpload():
     remote = argsFile['remoteuser'] + "@" + argsFile['remoteip'] + ":" + argsFile['remotedir']
 
     # Runs rsync.
-    rsync = subprocess.run(["rsync", "-razi", "--ignore-existing", "/home/replication/local/", remote], capture_output=True)
+    rsync = subprocess.run(["rsync", "-razi", "--ignore-existing", "/home/sync/local/", remote], capture_output=True)
 
     # If rsync returns non-zero exit code, script exits.
     if rsync.returncode != 0:

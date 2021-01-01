@@ -4,16 +4,16 @@ FROM python:slim-buster
 RUN apt update && apt install ssh jq rsync -y
 
 # User stuff.
-RUN useradd -m replication
+RUN useradd -m sync
 
-RUN mkdir -p /home/replication/.ssh
+RUN mkdir -p /home/sync/.ssh
 
-RUN chown -R replication:replication /home/replication/.ssh
+RUN chown -R sync:sync /home/sync/.ssh
 
-WORKDIR /home/replication
+WORKDIR /home/sync
 
 # Code stuff.
-COPY replication.py .
+COPY sync.py .
 
 COPY requirements.txt .
 
@@ -23,7 +23,7 @@ COPY retrieve-key.sh .
 RUN pip3 install -r requirements.txt
 
 # Final user stuff.
-USER replication
+USER sync
 
 # Init cmd.
-CMD ["python3", "replication.py"]
+CMD ["python3", "sync.py"]
