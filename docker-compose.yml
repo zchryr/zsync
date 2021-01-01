@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  zsync:
+    image: 'zacharyr/zsync:latest'
+    container_name: 'zsync'
+    volumes:
+      - ./keys/id_rsa:/home/zsync/.ssh/id_rsa:ro
+      - ./args.json:/home/zsync/args.json:ro
+      - ./test:/home/zsync/local:ro
