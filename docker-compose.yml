@@ -1,10 +1,10 @@
 version: '3.8'
 
 services:
-  replication:
-    image: 'zacharyr/replication:dev'
-    container_name: 'replication'
+  zsync:
+    image: 'zacharyr/zsync:latest'
+    container_name: 'zsync'
     volumes:
-      - ./keys/id_rsa:/home/replication/.ssh/id_rsa
-      - ./args.json:/home/replication/args.json
-      - ./test:/home/replication/local
+      - ./keys/id_rsa:/home/zsync/.ssh/id_rsa
+      - ./args.json:/home/zsync/args.json
+      - ./test:/home/zsync/local
