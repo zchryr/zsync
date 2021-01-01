@@ -55,7 +55,6 @@ def rsyncUpload():
     remote = argsFile['remoteuser'] + "@" + argsFile['remoteip'] + ":" + argsFile['remotedir']
 
     # Runs rsync.
-    # rsync = subprocess.run(["rsync", "-razi", "--ignore-existing", "./test/", remote], capture_output=True)
     rsync = subprocess.run(["rsync", "-razi", "--ignore-existing", "/home/zsync/local/", remote], capture_output=True)
 
     # If rsync returns non-zero exit code, script exits.
