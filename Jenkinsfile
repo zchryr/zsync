@@ -5,7 +5,7 @@ pipeline {
 
     environment {
         // Docker stuff.
-        registryRepo = 'zacharyr/replication'
+        registryRepo = 'zacharyr/sync'
         registryCredential = 'dockerhub'
         dockerImage = ''
     }
@@ -14,7 +14,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build(registryRepo + ":dev")
+                    dockerImage = docker.build(registryRepo + ":latest")
                 }
             }
         }
