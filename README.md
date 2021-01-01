@@ -23,7 +23,7 @@ This is a file that you NEED to edit. This file is used both by a bash script, a
 You need to run `ssh-keygen`, create a `id_rsa` and `id_rsa.pub` with an empty passphrase. I'm sure there is a better way doing authentication, but for now, this is how I've got this configured so it can be interactionless. Place the `id_rsa.pub` on the remote server in the `~/.ssh/authorized_keys` file.
 
 ## How To Build This Yourself
-`docker build . -t whateveryouwant`
+`docker build .`
 
 ### Random
 You can run this without needing docker, I just wouldn't recommend it. But if you want to, you'll need Python3, to install the packages in the `requirements.txt` file, and to do the above steps (minus the docker stuff).
