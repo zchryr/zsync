@@ -1,9 +1,9 @@
 {
-    "remoteip" : "192.168.10.80",
-    "remoteuser" : "root",
-    "remotedir": "/mnt/user/test",
+    "remoteip" : "192.168.1.1",
+    "remoteuser" : "user",
+    "remotedir": "/media",
     "mmnotifications": "true",
-    "mmwebhook": "https://mm.rohrbach.xyz/hooks/z8cywqe8yp89zqgb3o8coypb7r",
+    "mmwebhook": "https://chat.example.com/hooks/lajksdhfaishdlakjdsbfawe",
     "dirstonotifyon": [
         "movies",
         "tv-shows"
