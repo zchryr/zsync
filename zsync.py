@@ -42,8 +42,11 @@ def mattermostNotification(goodOrBad, message=""):
             exit(1)
 
 def remoteSSHKeyRetrieval():
-    # Runs a bash script to get the remote key and save it to /home/zsync/.ssh/known_hosts.
-    subprocess.run(["/bin/bash", "retrieve-key.sh"], capture_output=True)
+    # Get the remote key and save it to /home/zsync/.ssh/known_hosts.
+    ssh = subprocess.run(["ssh-keyscan", argsFile['remoteip']], capture_output=True)
+    kh = open("/home/zsync/.ssh/known_hosts", "a")
+    kh.write(ssh.stdout.decode('utf-8'))
+    kh.close()
 
 def rsyncUpload():
     # Checks if user edited the args.json before running.
@@ -76,5 +79,5 @@ def rsyncUpload():
                         dirs[idx].append(n.split("++++ ")[-1].split("/", 1)[-1]) # Appends to appropriate list.
 
 remoteSSHKeyRetrieval()
-rsyncUpload()
-mattermostNotification("good")
+# rsyncUpload()
+# mattermostNotification("good")
