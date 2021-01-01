@@ -64,12 +64,14 @@ def rsyncUpload():
     # If rsync returns non-zero exit code, script exits.
     if rsync.returncode != 0:
         print("rsync upload return code non-zero, assuming failed.")
-        mattermostNotification("bad", "rsync upload return code non-zero, assuming failed.\n rsync return code: " + str(rsync.returncode))
+        print("rsync exit code: " + str(rsync.returncode))
+        print(rsync.stdout)
+        mattermostNotification("bad", "rsync upload return code non-zero, assuming failed.\nrsync return code: " + str(rsync.returncode))
         exit(1)
 
     rOutput = rsync.stdout.decode('utf-8')
 
-    if argsFile['mmnotifications'] == false:
+    if argsFile['mmnotifications'] == "true":
         # Parses out the new movies & tv-shows.
         for idx, directory in enumerate(argsFile['dirstonotifyon']): # For loop with tracked index.
             for n in rOutput.split("\n"): # Splits out into new lines.
@@ -80,5 +82,5 @@ def rsyncUpload():
 remoteSSHKeyRetrieval()
 rsyncUpload()
 
-if argsFile['mmnotifications'] == true:
+if argsFile['mmnotifications'] == "true":
     mattermostNotification("good")
