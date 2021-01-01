@@ -13,9 +13,9 @@ mmattachments = []
 mmmessage = {}
 
 def mattermostNotification(goodOrBad, message=""):
-    if argsFile['mmnotifications'] == "true":
+    if argsFile['mmnotifications'] == "true": # Checks if args.json is set.
         if goodOrBad == "good":
-            if not any(dirs):
+            if not any(dirs): # If dirs list of lists is empty.
                 mmmessage['color'] = '#0ffc03'
                 mmmessage['text'] = "No updates made."
                 mmattachments.append(mmmessage)
@@ -42,8 +42,11 @@ def mattermostNotification(goodOrBad, message=""):
             exit(1)
 
 def remoteSSHKeyRetrieval():
-    # Runs a bash script to get the remote key and save it to /home/zsync/.ssh/known_hosts.
-    subprocess.run(["/bin/bash", "retrieve-key.sh"], capture_output=True)
+    # Get the remote key and save it to /home/zsync/.ssh/known_hosts.
+    ssh = subprocess.run(["ssh-keyscan", argsFile['remoteip']], capture_output=True)
+    kh = open("/home/zsync/.ssh/known_hosts", "a")
+    kh.write(ssh.stdout.decode('utf-8'))
+    kh.close()
 
 def rsyncUpload():
     # Checks if user edited the args.json before running.
