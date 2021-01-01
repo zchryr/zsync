@@ -17,8 +17,6 @@ COPY zsync.py .
 
 COPY requirements.txt .
 
-COPY retrieve-key.sh .
-
 # Python packages installation.
 RUN pip3 install -r requirements.txt
 
