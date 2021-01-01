@@ -1,6 +1,6 @@
 # zsync
 
-I created this project because I wanted to have more visibility into off-site backups that I'm running. I think [rsync](https://en.wikipedia.org/wiki/Rsync) is amazing, so that's why this is basically just a wrapper around in written in Python with some extra Mattermost notification functionality.
+I created this project because I wanted to have more visibility into off-site backups that I'm running. I think [rsync](https://en.wikipedia.org/wiki/Rsync) is amazing, so that's why this is basically just a wrapper around in written in Python with some extra Mattermost notification functionality. I might add Slack functionality into this later.
 
 ## How To Run This
 ### docker-compose [option 1]

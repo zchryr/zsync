@@ -1,12 +1,11 @@
 {
-    "remoteip" : "192.168.1.1",
-    "remoteuser" : "user",
-    "remotedir": "/media",
-    "mmnotifications": "false",
-    "mmwebhook": "https://chat.example.com/hooks/hsdfgaksjdhfgaksiudfygha",
+    "remoteip" : "192.168.10.80",
+    "remoteuser" : "root",
+    "remotedir": "/mnt/user/test",
+    "mmnotifications": "true",
+    "mmwebhook": "https://mm.rohrbach.xyz/hooks/z8cywqe8yp89zqgb3o8coypb7r",
     "dirstonotifyon": [
-        "foldername",
-        "pictures",
-        "vacation-2017"
+        "movies",
+        "tv-shows"
     ]
 }
