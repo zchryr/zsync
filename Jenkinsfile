@@ -5,7 +5,7 @@ pipeline {
 
     environment {
         // Docker stuff.
-        registryRepo = 'zacharyr/sync'
+        registryRepo = 'zacharyr/zsync'
         registryCredential = 'dockerhub'
         dockerImage = ''
     }
