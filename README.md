@@ -32,7 +32,7 @@ You need to run `ssh-keygen`, create a `id_rsa` and `id_rsa.pub` with an empty p
 ---
 
 ### Random
-You can run this without needing docker, I just wouldn't recommend it. But if you want to, you'll need Python3, to install the packages in the `requirements.txt` file, and to do the above steps (minus the docker stuff).
+You can run this without needing docker, I just wouldn't recommend it. But if you want to, you'll need Python3 and pip3, to install the packages in the `requirements.txt` file, and to do the above steps (minus the docker stuff).
 
 ### The Future
 I want to add more error checking/handling into this project. I'm sure I can also add a lot more visibility into things, so more to come on that.
