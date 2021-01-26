@@ -2,7 +2,8 @@ stages:
   - build
 
 build:
-  shell:
+  stage: build
+  script:
     - whoami
 
 # build:
