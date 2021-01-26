@@ -3,6 +3,7 @@ stages:
 
 build:
   image: docker:latest
+  tags: ["docker"]
   stage: build
   services:
     - docker:dind
