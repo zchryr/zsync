@@ -4,12 +4,10 @@ stages:
 build:
   tags: ["shell"]
   stage: build
+  before_script:
+    - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_ACCESS_TOKEN
   script:
-    - echo $(whoami)
-  # before_script:
-  #   - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_ACCESS_TOKEN
-  # script:
-  #   - docker build -t "zacharyr/zsync:latest" .
-  #   - docker push "zacharyr/zsync:latest"
-  # only:
-  #   - main
+    - docker build -t "zacharyr/zsync:latest" .
+    - docker push "zacharyr/zsync:latest"
+  only:
+    - main
