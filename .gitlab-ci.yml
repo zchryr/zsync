@@ -7,7 +7,7 @@ build:
   before_script:
     - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_ACCESS_TOKEN
   script:
-    - docker build -t "zacharyr/zsync:latest" .
-    - docker push "zacharyr/zsync:latest"
+    - docker build -t $DOCKERHUB_USERNAME/zsync:latest .
+    - docker push $DOCKERHUB_USERNAME/zsync:latest
   only:
     - main
