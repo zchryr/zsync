@@ -2,7 +2,7 @@ stages:
   - build
 
 build:
-  image: docker:latest
+  image: docker:stable
   tags: ["docker"]
   stage: build
   before_script:
