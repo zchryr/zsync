@@ -8,7 +8,7 @@ build:
   services:
     - docker:dind
   before_script:
-    - docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_ACCESS_TOKEN"
+    - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_ACCESS_TOKEN
   script:
     - docker build -t "zacharyr/zsync:latest" .
     - docker push "zacharyr/zsync:latest"
