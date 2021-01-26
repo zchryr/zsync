@@ -2,6 +2,7 @@ stages:
   - build
 
 build:
+  tags: ["shell"]
   stage: build
   script:
     - whoami
