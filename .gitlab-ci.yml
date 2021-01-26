@@ -2,10 +2,9 @@ stages:
   - build
 
 build:
-  tags: ["shell"]
   stage: build
   script:
-    - whoami
+    - echo $(whoami)
 
 # build:
 #   image: docker:latest
