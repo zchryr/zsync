@@ -1,5 +1,6 @@
 stages:
   - build
+  - snyk
 
 build:
   tags: ["shell"]
@@ -11,3 +12,11 @@ build:
     - docker push $DOCKERHUB_USERNAME/zsync:latest
   only:
     - main
+
+snyk:
+  tags: ["shell"]
+  stage: snyk
+  before_script:
+    - pip3 install -r requirements.txt
+  script:
+    - snyk monitor --command=python3
