@@ -26,5 +26,5 @@ snyk-container:
   tags: ["shell"]
   stage: snyk
   script:
-    - snyk container test $DOCKERHUB_USERNAME/zsync:latest
-    - snyk container monitor $DOCKERHUB_USERNAME/zsync:latest
+    - snyk container test zacharyr/zsync:latest
+    - snyk container monitor zacharyr/zsync:latest
