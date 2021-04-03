@@ -17,11 +17,8 @@ build:
 snyk-image:
   tags: ["shell"]
   stage: snyk
-  before_script:
-    - echo $DOCKERHUB_ACCESS_TOKEN | docker login -u $DOCKERHUB_USERNAME --password-stdin
   script:
-    - docker build -t zacharyr/zsync:latest .
-    - echo "I hate this :("
+    - snyk test --docker zacharyr/zsync:latest --file=Dockerfile
 
 # snyk-deps:
 #   tags: ["shell"]
