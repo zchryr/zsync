@@ -13,20 +13,20 @@ build:
   only:
     - main
 
-snyk-deps:
+snyk-image:
   tags: ["shell"]
   stage: snyk
   before_script:
-    - pip3 install -r requirements.txt
+    - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_ACCESS_TOKEN
   script:
-    - snyk test --command=python3
-    - snyk monitor --command=python3
+    - docker build -t $DOCKERHUB_USERNAME/zsync:latest .
+    - echo "I hate this :("
 
-snyk-container:
-  tags: ["shell"]
-  stage: snyk
-  before_script:
-    - docker login
-  script:
-    - echo "just testing :)"
-    # - snyk test --docker zacharyr/zsync:latest --file=Dockerfile
+# snyk-deps:
+#   tags: ["shell"]
+#   stage: snyk
+#   before_script:
+#     - pip3 install -r requirements.txt
+#   script:
+#     - snyk test --command=python3
+#     - snyk monitor --command=python3
