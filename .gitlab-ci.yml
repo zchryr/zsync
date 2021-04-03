@@ -1,6 +1,13 @@
 stages:
+  - clean
   - build
   - snyk
+
+clean:
+  tags: ["shell"]
+  stage: clean
+  script:
+    - docker system prune -f
 
 build:
   tags: ["shell"]
@@ -11,6 +18,7 @@ build:
     - docker pull python:slim-buster
     - docker build -t $DOCKERHUB_USERNAME/zsync:latest .
     - docker push $DOCKERHUB_USERNAME/zsync:latest
+    - docker logout
   only:
     - main
 
