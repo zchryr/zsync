@@ -8,6 +8,7 @@ clean:
   stage: clean
   script:
     - docker system prune -f
+    - docker image prune -f
 
 snyk-image:
   tags: ["shell"]
