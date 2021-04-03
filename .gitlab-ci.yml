@@ -1,5 +1,6 @@
 stages:
   - build
+  - snyk
 
 build:
   tags: ["shell"]
@@ -12,3 +13,19 @@ build:
     - docker push $DOCKERHUB_USERNAME/zsync:latest
   only:
     - main
+
+snyk-image:
+  tags: ["shell"]
+  stage: snyk
+  script:
+    - snyk test --docker zacharyr/zsync:latest --file=Dockerfile --fail-on=all
+    - snyk monitor --docker zacharyr/zsync:latest --file=Dockerfile
+
+snyk-deps:
+  tags: ["shell"]
+  stage: snyk
+  before_script:
+    - pip3 install -r requirements.txt
+  script:
+    - snyk test --command=python3
+    - snyk monitor --command=python3
