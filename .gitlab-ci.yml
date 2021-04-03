@@ -17,7 +17,7 @@ snyk-image:
   tags: ["shell"]
   stage: snyk
   before_script:
-    - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_ACCESS_TOKEN
+    - docker login
   script:
     - docker build -t $DOCKERHUB_USERNAME/zsync:latest .
     - echo "I hate this :("
