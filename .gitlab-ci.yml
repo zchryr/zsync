@@ -1,7 +1,7 @@
 stages:
   - clean
-  - build
   - snyk
+  - build
 
 clean:
   tags: ["shell"]
