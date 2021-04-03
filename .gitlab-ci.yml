@@ -26,7 +26,7 @@ snyk-image:
   tags: ["shell"]
   stage: snyk
   script:
-    - snyk test --docker zacharyr/zsync:latest --file=Dockerfile --fail-on=all
+    - snyk test --docker zacharyr/zsync:latest --file=Dockerfile --fail-on=all --exclude-base-image-vulns
     - snyk monitor --docker zacharyr/zsync:latest --file=Dockerfile
 
 snyk-deps:
