@@ -9,19 +9,6 @@ clean:
   script:
     - docker system prune -f
 
-build:
-  tags: ["shell"]
-  stage: build
-  before_script:
-    - docker login -u zacharyr -p $DOCKERHUB_ACCESS_TOKEN
-  script:
-    - docker pull python:slim-buster
-    - docker build -t zacharyr/zsync:latest .
-    - docker push zacharyr/zsync:latest
-    - docker logout
-  only:
-    - main
-
 snyk-image:
   tags: ["shell"]
   stage: snyk
@@ -37,3 +24,16 @@ snyk-deps:
   script:
     - snyk test --command=python3
     - snyk monitor --command=python3
+
+build:
+  tags: ["shell"]
+  stage: build
+  before_script:
+    - docker login -u zacharyr -p $DOCKERHUB_ACCESS_TOKEN
+  script:
+    - docker pull python:slim-buster
+    - docker build -t zacharyr/zsync:latest .
+    - docker push zacharyr/zsync:latest
+    - docker logout
+  only:
+    - main
