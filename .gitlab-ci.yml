@@ -19,7 +19,7 @@ snyk-image:
   before_script:
     - docker login
   script:
-    - docker build -t $DOCKERHUB_USERNAME/zsync:latest .
+    - docker build -t zacharyr/zsync:latest .
     - echo "I hate this :("
 
 # snyk-deps:
