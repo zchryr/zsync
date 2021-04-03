@@ -26,7 +26,7 @@ snyk-container:
   tags: ["shell"]
   stage: snyk
   before_script:
-    - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_ACCESS_TOKEN
+    - docker login
   script:
     - echo "just testing :)"
     # - snyk test --docker zacharyr/zsync:latest --file=Dockerfile
