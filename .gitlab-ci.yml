@@ -26,5 +26,5 @@ snyk-container:
   tags: ["shell"]
   stage: snyk
   script:
-    - snyk test --docker zacharyr/zsync:latest --file=/Dockerfile
+    - snyk test --docker zacharyr/zsync:latest --file=Dockerfile
     # - snyk container monitor zacharyr/zsync:latest
