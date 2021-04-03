@@ -7,8 +7,8 @@ build:
   stage: build
   before_script:
     - docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_ACCESS_TOKEN
-    - docker pull python:slim-buster
   script:
+    - docker pull python:slim-buster
     - docker build -t $DOCKERHUB_USERNAME/zsync:latest .
     - docker push $DOCKERHUB_USERNAME/zsync:latest
   only:
