@@ -7,8 +7,8 @@ clean:
   tags: ["shell"]
   stage: clean
   script:
-    - docker system prune -f
-    - docker image prune -f
+    - docker system prune -a -f
+    - docker image prune -a -f
 
 build:
   tags: ["shell"]
