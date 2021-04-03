@@ -13,10 +13,20 @@ build:
   only:
     - main
 
-snyk:
+snyk-deps:
   tags: ["shell"]
   stage: snyk
   before_script:
     - pip3 install -r requirements.txt
   script:
+    - snyk test --command=python3
     - snyk monitor --command=python3
+
+snyk-container:
+  tags: ["shell"]
+  stage: snyk
+  before_script:
+    - docker build -t $DOCKERHUB_USERNAME/zsync:latest .
+  script:
+    - snyk container test $DOCKERHUB_USERNAME/zsync:latest
+    - snyk container monitor $DOCKERHUB_USERNAME/zsync:latest
