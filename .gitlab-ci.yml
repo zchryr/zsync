@@ -8,7 +8,6 @@ clean:
   stage: clean
   script:
     - docker system prune -a -f
-    - docker image prune -a -f
 
 build:
   tags: ["shell"]
