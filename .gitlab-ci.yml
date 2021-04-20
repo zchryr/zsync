@@ -15,7 +15,6 @@ build:
   before_script:
     - docker login -u zacharyr -p $DOCKERHUB_ACCESS_TOKEN
   script:
-    - docker pull python:slim-buster
     - docker build -t zacharyr/zsync:latest .
     - docker push zacharyr/zsync:latest
     - docker logout
