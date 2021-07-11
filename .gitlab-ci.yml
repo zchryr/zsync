@@ -26,7 +26,6 @@ snyk-image:
   stage: snyk
   script:
     - snyk test --docker zacharyr/zsync:latest --file=Dockerfile --fail-on=all --exclude-base-image-vulns
-    - snyk monitor --docker zacharyr/zsync:latest --file=Dockerfile
 
 snyk-deps:
   tags: ["shell"]
@@ -35,6 +34,3 @@ snyk-deps:
     - pip3 install -r requirements.txt
   script:
     - snyk test --command=python3
-    - snyk monitor --command=python3
-
-
