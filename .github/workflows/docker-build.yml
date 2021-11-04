@@ -33,6 +33,3 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: zacharyr/zsync:latest
-      - 
-        name: Image Digest
-        run: echo ${{ steps.docker_build.digest }}
