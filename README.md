@@ -29,7 +29,7 @@ You need to run `ssh-keygen`, create a `id_rsa` and `id_rsa.pub` with an empty p
 ## How To Build This Yourself
 `docker build .`
 
-![Action Workflow Status](https://github.com/zchryr/zsync/blob/main/.github/workflows/docker-build.yml/badge.svg)
+![Action Status](https://github.com/zchryr/zsync/actions/workflows/docker-build.yml/badge.svg)
 
 ---
 
