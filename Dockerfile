@@ -20,6 +20,7 @@ COPY zsync.py .
 COPY requirements.txt .
 
 # Python packages installation.
+RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
 # Final user stuff.
