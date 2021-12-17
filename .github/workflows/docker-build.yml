@@ -33,3 +33,12 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: zacharyr/zsync:latest
+      -
+        name: Compose Mattermost Message
+        run : |
+          echo "{\"text\":\"Testing GitHub Action :) :tada:\"}" > mattermost.json
+      -
+        name: Send Mattermost Message
+        uses: mattermost/action-mattermost-notify@master
+        env:
+          MATTERMO_WEBHOOK_URL: ${{ secrets.MATTERMOST_URL }}
