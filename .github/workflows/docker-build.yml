@@ -39,7 +39,7 @@ jobs:
       -
         name: Compose Mattermost Message
         run : |
-          echo "{\"text\":\"Docker image: `zsync:latest` built! :tada:\"}" > mattermost.json
+          echo "{\"text\":\"Docker image 'zsync:latest' built! :tada:\"}" > mattermost.json
       -
         uses: mattermost/action-mattermost-notify@master
         env:
